@@ -1,5 +1,6 @@
 const mqtt = require('mqtt')
 
+const os = require('os')
 const fs = require('fs/promises')
 
 const client = mqtt.connect('mqtt:broker')
@@ -37,6 +38,9 @@ setInterval(async () => {
   const fanState = FAN_STATES[cur_state.trim()]
 
   const snapshot = {
+    hostname: os.hostname(),
+    freeMem: os.freemem(),
+    totalMem: os.totalmem(),
     epoch,
     timestamp: Date.now() - epoch,
     tempC,
