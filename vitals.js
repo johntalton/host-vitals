@@ -46,3 +46,8 @@ setInterval(async () => {
  client.publish('/vitals', JSON.stringify(snapshot))
 
 }, 5 * 1000)
+
+process.on('SIGTERM', function() {
+  console.log('goodbye')
+  process.exit(0)
+})
